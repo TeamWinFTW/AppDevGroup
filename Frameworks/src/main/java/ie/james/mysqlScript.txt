@@ -1,0 +1,58 @@
+DROP DATABASE Exhibits;
+CREATE DATABASE Exhibits;
+USE Exhibits;
+CREATE TABLE Exhibit
+(
+    id varchar(255),
+    title varchar(255),
+    date varchar(255),
+    medium varchar(255),
+    creditline varchar(255),
+    description varchar(255),
+    gallery_text varchar(1500),
+    PRIMARY KEY (id)
+);
+CREATE TABLE Image
+(
+    prim_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    url varchar(255),
+    width varchar(255),
+    height varchar(255),
+    is_primary varchar(255),
+    image_id varchar(255)
+);
+
+CREATE TABLE Participant
+ (
+    prim_id int NOT NULL AUTO_INCREMENT,
+    person_id varchar(255),
+    person_name varchar(255),
+    person_url varchar(255),
+    PRIMARY KEY (prim_id)
+);
+
+CREATE TABLE Role
+(
+    prim_id int NOT NULL AUTO_INCREMENT,
+    role_id varchar(255),
+    role_name varchar(255),
+    role_display_name varchar(255),
+    role_url varchar(255),
+    PRIMARY KEY (prim_id)
+);
+
+create table Participation (
+   prim_id int NOT NULL AUTO_INCREMENT,
+   role int,
+   participant int,
+   PRIMARY KEY (prim_id),
+   CONSTRAINT participant_prim_id FOREIGN KEY (participant) REFERENCES Participant ( prim_id),
+   CONSTRAINT role_prim_id FOREIGN KEY (role) REFERENCES Role ( prim_id)
+);
+create table Exhibit_has_Participations (
+    exhibit_id varchar(255),
+    participation_id varchar(255)
+
+);
+
+
